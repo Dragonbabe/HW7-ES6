@@ -1,19 +1,32 @@
-const readline = require('readline');
+'use strict'
 
-const rl = readline.createInterface({
+var inquirer = require('inquirer');
 
-    input: process.stdin,
-    output: process.stdout
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: 'What is your github user name?',
+            name: 'username'
+        },
+        {
+            type: 'password',
+            message: 'What is your password?',
+            name: 'password'
+        },
+        {
+            type: 'password',
+            message: 'Re-enter password to confirm:',
+            name: 'confirm'
+        }
+    ])
+    .then(function (response) {
+        if (response.confirm === response.password) {
+            console.log('Success!');
+        } else {
+            console.log('You forgot your password already?!');
+        }
+    });
 
-});
-
-rl.question('what is your name?', (answer) => {
-    console.log(`Nice to meet you: ${answer}`);
-    rl.close();
-});
-
-const color = require('favecolor');
-
-const
 
 

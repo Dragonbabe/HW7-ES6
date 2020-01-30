@@ -1,15 +1,24 @@
 {
-  "name": "14-ins_inquirer-demo",
+  "name": "hw7",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node.js and ES6+",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Esther Walker",
   "license": "ISC",
   "dependencies": {
     "inquirer": "^6.5.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dragonbabe/HW7-ES6.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dragonbabe/HW7-ES6/issues"
+  },
+  "homepage": "https://github.com/Dragonbabe/HW7-ES6#readme"
 }

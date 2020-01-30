@@ -11,9 +11,10 @@ inquirer
         },
 
         {
-            type: 'input',
+            type: 'list',
             message: 'What is your favorite color?',
-            name: 'color'
+            name: 'color',
+            choices: ['orange', 'yellow', 'red', 'blue', 'green', 'purple', 'pink', 'black', 'white',]
         }
     ])
     .then(function (response) {

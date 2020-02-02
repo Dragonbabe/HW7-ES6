@@ -17,7 +17,7 @@ const questions = [
         type: 'list',
         message: 'What is your favorite color?',
         name: 'color',
-        choices: ['yellow', 'red', 'blue', 'green', 'purple']
+        choices: ['magenta', 'turquoise', 'blue', 'green', 'purple']
     }
 ];
 
@@ -27,19 +27,17 @@ async function init() {
         const gitHub = await axios.get(`https://api.github.com/users/${userInfo.username}`)
         const repos = await axios.get(`https://api.github.com/users/${userInfo.username}/starred`);
 
+        const starCount = repos.data.length;
 
-
-        console.log(repos);
-
-        await writeFileAsync('index.html', generateHTML(userInfo.color), 'utf8');
-        //console.log(gitHub.data);
+        await writeFileAsync('index.html', generateHTML(userInfo.color, starCount, gitHub.data), 'utf8');
+        console.log(gitHub.data);
     } catch (err) {
         console.error(err);
     }
 };
 
 
-function generateHTML(color) {
+function generateHTML(color, starCount, gitHub) {
     return `<!DOCTYPE html>
     <html lang="en">
     
@@ -81,7 +79,7 @@ function generateHTML(color) {
                         <div class="col-md-12">
                             <div class="card text-center">
                                 <div class="card-header">
-                                    Hi
+                                    Hi!
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">My name is ${gitHub.name}</h5>
@@ -89,7 +87,7 @@ function generateHTML(color) {
                                 </div>
                                 <div class="card-footer text-muted">
                                     <a href="${gitHub.location}">Me!</a>
-                                    <2 href="${gitHub.blog}">Blog</a>
+                                    <a href="${gitHub.blog}">Blog</a>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +138,7 @@ function generateHTML(color) {
                         <div class="card">
                             <div class="card-body text-center">
                                 <h5 class="card-title">GitHub Stars</h5>
-                                <p class="card-text">15
+                                <p class="card-text">${starCount}
                                 </p>
                                 <a href="#" class="card-link"></a>
                                 <a href="#" class="card-link"></a>
@@ -161,13 +159,6 @@ function generateHTML(color) {
                 </div>
             </div>
         </div>
-    
-        <script>
-    
-    
-    
-    
-        </script>
     
     </body>
     

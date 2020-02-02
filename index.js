@@ -5,6 +5,8 @@ const axios = require('axios');
 const fs = require('fs');
 const util = require('util');
 const writeFileAsync = util.promisify(fs.writeFile);
+const html2canvas = require('html2canvas');
+const jsPdf = require('jsPdf')
 
 const questions = [
     {
@@ -35,6 +37,25 @@ async function init() {
         console.error(err);
     }
 };
+
+import html2canvas from 'html2canvas'
+import jsPdf from 'jsPdf'
+
+function printPDF() {
+    const domElement = document.getElementById('your-id')
+    html2canvas(domElement, {
+        onclone: (document) => {
+            document.getElementById('print-button').style.visibility = 'hidden'
+        }
+    })
+        .then((canvas) => {
+            const imgData = canvas.toDataURL('image/png')
+            const pdf = new jsPdf()
+            pdf.addImage(imgData, 'JPEG', 0, 0, width, height)
+            pdf.save(' https://dragonbabe.github.io/HW7-ES6/')
+        });
+}
+
 
 
 function generateHTML(color, starCount, gitHub) {
@@ -168,11 +189,11 @@ function generateHTML(color, starCount, gitHub) {
 
 
 
-
-
 }
 
 init()
+
+printPDF()
 
 
 

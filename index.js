@@ -5,8 +5,10 @@ const axios = require('axios');
 const fs = require('fs');
 const util = require('util');
 const writeFileAsync = util.promisify(fs.writeFile);
-const html2canvas = require('html2canvas');
-const jsPdf = require('jsPdf')
+const puppeteer = require('puppeteer')
+const path = require('path');
+const open = require('open');
+
 
 const questions = [
     {
@@ -32,31 +34,25 @@ async function init() {
         const starCount = repos.data.length;
 
         await writeFileAsync('index.html', generateHTML(userInfo.color, starCount, gitHub.data), 'utf8');
+        await printPDF();
+        open('resume.pdf');
         console.log(gitHub.data);
     } catch (err) {
         console.error(err);
+
     }
 };
 
-import html2canvas from 'html2canvas'
-import jsPdf from 'jsPdf'
-
-function printPDF() {
-    const domElement = document.getElementById('your-id')
-    html2canvas(domElement, {
-        onclone: (document) => {
-            document.getElementById('print-button').style.visibility = 'hidden'
-        }
-    })
-        .then((canvas) => {
-            const imgData = canvas.toDataURL('image/png')
-            const pdf = new jsPdf()
-            pdf.addImage(imgData, 'JPEG', 0, 0, width, height)
-            pdf.save(' https://dragonbabe.github.io/HW7-ES6/')
-        });
+async function printPDF() {
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto(`file://${path.resolve(__dirname, "index.html")}`, {
+        waitUntil: "networkidle0"
+    });
+    const pdf = await page.pdf({ format: "A4" });
+    await writeFileAsync("resume.pdf", pdf, "binary");
+    await browser.close();
 }
-
-
 
 function generateHTML(color, starCount, gitHub) {
     return `<!DOCTYPE html>
@@ -70,6 +66,9 @@ function generateHTML(color, starCount, gitHub) {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <style>
+        body {
+            -webkit-print-color-adjust: exact;
+          }
             .parent-container {
                 background-color: ${color};
             }
@@ -193,7 +192,7 @@ function generateHTML(color, starCount, gitHub) {
 
 init()
 
-printPDF()
+
 
 
 

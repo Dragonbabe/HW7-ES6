@@ -143,8 +143,6 @@ function generateHTML(color, starCount, gitHub) {
                                 <h5 class="card-title">Public Repositories</h5>
                                 <p class="card-text">${gitHub.public_repos}
                                 </p>
-                                <a href="#" class="card-link"></a>
-                                <a href="#" class="card-link"></a>
                             </div>
                         </div>
                     </div>
@@ -154,8 +152,6 @@ function generateHTML(color, starCount, gitHub) {
                                 <h5 class="card-title">Followers</h5>
                                 <p class="card-text">${gitHub.followers}
                                 </p>
-                                <a href="#" class="card-link"></a>
-                                <a href="#" class="card-link"></a>
                             </div>
                         </div>
                     </div>
@@ -167,8 +163,6 @@ function generateHTML(color, starCount, gitHub) {
                                 <h5 class="card-title">GitHub Stars</h5>
                                 <p class="card-text">${starCount}
                                 </p>
-                                <a href="#" class="card-link"></a>
-                                <a href="#" class="card-link"></a>
                             </div>
                         </div>
                     </div>

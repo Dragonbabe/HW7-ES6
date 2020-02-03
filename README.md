@@ -6,7 +6,7 @@
 
 This project involves node js and ES6. When a user opens the terminal they are asked 2 questions. What is their github user name and what is their favorite color. Once they enter this information, a PDF is generated displaying all of their github user information. Including the user's github profile image, name, links to their location, github profile, and blog, user bio, number of public repositories, number of followers, number of github stars, and number of users following. Also the background color of the PDF corresponds to the color the user specified at the outset.
 
-## Project is created with :
+## Technologies Used
 
 - [JavaScript](https://www.javascript.com/)
 
@@ -30,7 +30,7 @@ This project generates a PDF. However as soon as the PDF is generated with Adobe
 
 ## Future Expansion
 
-A goal for this project in the future would be to design the program with the functionality to either close the current PDF, so that another could be generated without throwing an error, or to number the PDF's as they get generated PDF1, PDF2, PDF3, and so forth. Goals for the future! :smile_mouth_open:
+A goal for this project in the future would be to design the program with the functionality to either close the current PDF, so that another could be generated without throwing an error, or to number the PDF's as they get generated PDF1, PDF2, PDF3, and so forth. Goals for the future! :smile:
 
 ## Giphy
 

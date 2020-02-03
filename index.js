@@ -8,6 +8,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 const puppeteer = require('puppeteer')
 const path = require('path');
 const open = require('open');
+// const close = require('close');
 
 
 const questions = [
@@ -34,6 +35,8 @@ async function init() {
         const starCount = repos.data.length;
 
         await writeFileAsync('index.html', generateHTML(userInfo.color, starCount, gitHub.data), 'utf8');
+
+
         await printPDF();
         open('resume.pdf');
         console.log(gitHub.data);
@@ -104,10 +107,14 @@ function generateHTML(color, starCount, gitHub) {
                                 <div class="card-body">
                                     <h5 class="card-title">My name is ${gitHub.name}</h5>
                                     <p class="card-text">Currently working at ${gitHub.company}</p>
+                                    <p class="card-text">${gitHub.bio}</p>
+                                    <a href="${gitHub.html_url}">Github!</a>
+                                    
                                 </div>
+                                    
                                 <div class="card-footer text-muted">
-                                    <a href="${gitHub.location}">Me!</a>
-                                    <a href="${gitHub.blog}">Blog</a>
+                                    <a class="px-3" href="https://www.google.com/maps/place/${gitHub.location}">${gitHub.location}</a>
+                                    <a class="px-3" href="${gitHub.blog}">Blog</a>
                                 </div>
                             </div>
                         </div>
@@ -171,8 +178,6 @@ function generateHTML(color, starCount, gitHub) {
                                 <h5 class="card-title">Following</h5>
                                 <p class="card-text">${gitHub.following}
                                 </p>
-                                <a href="#" class="card-link"></a>
-                                <a href="#" class="card-link"></a>
                             </div>
                         </div>
                     </div>

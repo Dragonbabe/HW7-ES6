@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
+    "close": "0.0.1",
     "html2canvas": "^1.0.0-rc.5",
     "inquirer": "^6.5.0",
     "jspdf": "^1.5.3",

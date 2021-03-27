@@ -10,7 +10,7 @@
   "author": "Esther Walker",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "close": "0.0.1",
     "html2canvas": "^1.0.0-rc.5",
     "inquirer": "^6.5.0",
